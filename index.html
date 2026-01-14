@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Voice Translator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Voice Translator</h1>
+        <p>This is a placeholder frontend. The full functionality is not yet implemented.</p>
+        <button id="translateBtn">Start Translating</button>
+    </div>
+    <script>
+        const translateBtn = document.getElementById('translateBtn');
+        let isTranslating = false;
+
+        translateBtn.addEventListener('click', () => {
+            isTranslating = !isTranslating;
+            if (isTranslating) {
+                translateBtn.textContent = 'Stop Translating';
+                // TODO: Add logic to start translation
+            } else {
+                translateBtn.textContent = 'Start Translating';
+                // TODO: Add logic to stop translation
+            }
+        });
+    </script>
+</body>
+</html>
