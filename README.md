@@ -1,4 +1,4 @@
-# 🌍 Universal Translator
+# 🌍 Real-Time Voice Translator
 
 A real-time voice translation application that works seamlessly with any desktop application including Zoom, Google Meet, WhatsApp, and more. Powered by advanced speech recognition and translation APIs.
 
@@ -28,7 +28,7 @@ A real-time voice translation application that works seamlessly with any desktop
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd UniversalTranslator
+   cd Real-Time Voice Translator
    ```
 
 2. **Install dependencies**
@@ -82,7 +82,7 @@ The API will be available at `http://localhost:8000`
 ## 🏗️ Project Structure
 
 ```
-UniversalTranslator/
+Real-Time Voice Translator/
 ├── translator.py          # Main desktop application
 ├── backend/
 │   └── server.py         # FastAPI backend server
@@ -148,7 +148,7 @@ pip install --upgrade pyaudio speechrecognition pyttsx3 deep-translator
 ## 🎯 Use Cases
 
 - **Language Learning**: Practice pronunciation with real-time feedback
-- **Conference Calls**: Real-time translation during Zoom/Meet calls
+- **Conference Calls**:. Real-time translation during Zoom/Meet calls
 - **Customer Support**: Communicate with international clients
 - **Travel**: Break language barriers on the go
 - **Content Creation**: Translate videos and audio content
