@@ -29,7 +29,7 @@ class RealTimeTranslator:
         self.recognizer.pause_threshold = 0.8
         
         # Initialize text-to-speech
-        self.tts_engine = pyttsx3.init()
+        
         self.tts_engine.setProperty('rate', 150)
         self.tts_engine.setProperty('volume', 0.9)
         
