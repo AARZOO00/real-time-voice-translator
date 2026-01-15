@@ -1,48 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-Time Voice Translator</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
-        }
-        button {
-            padding: 1rem 2rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Real-Time Voice Translator</h1>
-        <p>This is a placeholder frontend. The full functionality is not yet implemented.</p>
-        <button id="translateBtn">Start Translating</button>
-    </div>
-    <script>
-        const translateBtn = document.getElementById('translateBtn');
-        let isTranslating = false;
 
-        translateBtn.addEventListener('click', () => {
-            isTranslating = !isTranslating;
-            if (isTranslating) {
-                translateBtn.textContent = 'Stop Translating';
-                // TODO: Add logic to start translation
-            } else {
-                translateBtn.textContent = 'Start Translating';
-                // TODO: Add logic to stop translation
-            }
-        });
-    </script>
+<h2>🎤 Real-Time Voice Translator</h2>
+
+<button onclick="startRecording()">Start Recording</button>
+<button onclick="stopRecording()">Stop</button>
+
+<p id="status"></p>
+<audio id="player" controls></audio>
+
+<script>
+let recorder;
+let audioChunks = [];
+
+async function startRecording() {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    recorder = new MediaRecorder(stream);
+    audioChunks = [];
+
+    recorder.ondataavailable = e => audioChunks.push(e.data);
+
+    recorder.onstop = async () => {
+        const blob = new Blob(audioChunks, { type: 'audio/wav' });
+        document.getElementById("player").src = URL.createObjectURL(blob);
+        uploadAudio(blob);
+    };
+
+    recorder.start();
+    document.getElementById("status").innerText = "Recording...";
+}
+
+function stopRecording() {
+    recorder.stop();
+    document.getElementById("status").innerText = "Uploading...";
+}
+
+async function uploadAudio(blob) {
+    const formData = new FormData();
+    formData.append("file", blob, "voice.wav");
+
+    const response = await fetch("https://YOUR-RENDER-URL/upload", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await response.json();
+    alert("Translated Text: " + data.text);
+}
+</script>
+
 </body>
 </html>
